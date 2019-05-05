@@ -5,7 +5,7 @@ A simple script to accept command line arguments and print details regarding the
 
 This script uses the API: http://open-notify.org/
 
-Accepts the following posiitonal command line argument: loc, pass, or people
+Accepts one of the following positional command line argument: loc, pass, or people
 
 
 ### `loc`
