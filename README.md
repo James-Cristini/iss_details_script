@@ -1,7 +1,7 @@
 ## iss_details_script
 
 
-A simple script to accept command line arguments and return details regarding the International Space Station.
+A simple script to accept command line arguments and print details regarding the International Space Station.
 
 This script uses the API: http://open-notify.org/
 
