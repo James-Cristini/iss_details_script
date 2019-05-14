@@ -5,7 +5,7 @@ A simple script to accept command line arguments and print details regarding the
 
 This script uses the API: http://open-notify.org/
 
-Accepts the following posiitonal command line argument: loc, pass, or people
+Accepts one of the following positional command line argument: `loc`, `pass`, or `people`
 
 
 ### `loc`
@@ -29,7 +29,7 @@ the `pass` command also requires `-lat` and `-lon` arguments and prints a few up
 
 
 ### `people`
-The `people` command prints the names of a craft (e.g. ISS) and the people aboard them
+The `people` command prints the names of crafts in space (e.g. ISS) and the people aboard them
 * Example call:
     * `>>> python iss_details.py people`
     * `There are 6 people aboard the ISS. They are: Oleg Kononenko, David Saint-Jacques, Anne McClain, Alexey Ovchinin, Nick Hague, Christina Koch`
