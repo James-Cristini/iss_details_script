@@ -150,7 +150,7 @@ COMMANDS = { #TODO The above functions and this dict would ideally be in a separ
 
 
 def parse_cl_args():
-    """ Parses command line arguments. """
+    """ Parses command line arguments and returns them as a dictionary """
     # Set up argument parser
     parser = argparse.ArgumentParser(description='Process input arguments')
 
@@ -162,25 +162,28 @@ def parse_cl_args():
     parser.add_argument('-lon', metavar='Longitude', type=float,
             help='Required only for pass command, expects a longitude value as a number between -180 and 180', default=None)
 
-    return parser.parse_args()
+    # Send command line arguments to dict
+    cl_args = vars(parser.parse_args())
+
+    # Since nargs puts this arg in a list, need to pull it out
+    cl_args['primary_command'] = cl_args['primary_command'][0]
+
+    return cl_args
 
 
 def run(cl_args):
-    """ Primary run function. """
-    # Extract necessary arguments
-    primary_command = cl_args.primary_command[0] # nargs ensures no IndexError here
-    lat = cl_args.lat # Defaulted to None
-    lon = cl_args.lon # Defaulted to None
+    """ Primary run function. expects cl_args as a dict object. """
+    # Extract primary_command argument
+    primary_command = cl_args.pop('primary_command')
 
-    # Try to run function assoiated with primary_command argument
+    # Try to run function associated with primary_command argument
     try:
         func = COMMANDS[primary_command]
+        func(**cl_args) # Send with unpacked cl_args dict
     except KeyError:
         print('Argument "{0}" not recognized'.format(primary_command))
     except ParsingError as e:
         print(e)
-    else:
-        func(lat=lat, lon=lon)
 
 
 if __name__ == '__main__':
